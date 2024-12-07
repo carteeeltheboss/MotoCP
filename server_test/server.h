@@ -17,5 +17,6 @@ struct Client {
     int id;
 };
 
+void broadcast_message(const std::string& message, int sender_id);
 
 #endif

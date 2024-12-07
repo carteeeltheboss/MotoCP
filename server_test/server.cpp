@@ -1,12 +1,13 @@
 #include "server.h"
+#include "serialisation.h"
+#include <vector>
+#include <cstring>
 
 std::vector<Client> clients;
 
-void broadcast_message(const std::string& message, int sender_id) {
+void broadcast_message(const char* data, int size, int sender_id) {
     for (const auto& client : clients) {
-        if (client.id != sender_id) { // Skip the sender
-            SDLNet_TCP_Send(client.socket, message.c_str(), message.size());
-        }
+        SDLNet_TCP_Send(client.socket, data, size);  
     }
 }
 
@@ -17,7 +18,7 @@ int main(int argc, char* argv[]) {
     }
 
     IPaddress ip;
-    if (SDLNet_ResolveHost(&ip, NULL, 12345) < 0) {
+    if (SDLNet_ResolveHost(&ip, NULL, SERVER_PORT) < 0) {
         std::cerr << "Failed to resolve host: " << SDLNet_GetError() << std::endl;
         return 1;
     }
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    std::cout << "Server started on port 12345..." << std::endl;
+    std::cout << "Server started on port " << SERVER_PORT << "..." << std::endl;
 
     int client_id = 1;
     while (true) {
@@ -42,19 +43,23 @@ int main(int argc, char* argv[]) {
         char buffer[512];
         for (auto it = clients.begin(); it != clients.end();) {
             int received = SDLNet_TCP_Recv(it->socket, buffer, sizeof(buffer));
-            if (received <= 0) { // Client disconnected
+            if (received <= 0) {  
                 std::cout << "Client " << it->id << " disconnected." << std::endl;
                 SDLNet_TCP_Close(it->socket);
                 it = clients.erase(it);
             } else {
-                buffer[received] = '\0'; // Null-terminate the message
-                std::cout << "Received from client " << it->id << ": " << buffer << std::endl;
-                broadcast_message(buffer, it->id); // Send to all other clients
+                 
+                kObjct obj = deserialize(buffer);
+                std::cout << "Received object from client " << it->id << ":";
+                obj.affiche();
+
+                 
+                broadcast_message(buffer, sizeof(kObjct), it->id);
                 ++it;
             }
         }
 
-        SDL_Delay(10); // Prevent CPU overuse
+        SDL_Delay(10);  
     }
 
     SDLNet_TCP_Close(server);

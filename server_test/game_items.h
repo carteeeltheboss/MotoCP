@@ -16,7 +16,6 @@ public:
         name(a), velocity(v), x(pos_x), y(pos_y) {}
 
     void affiche();
-
     string get_name();
 };
 

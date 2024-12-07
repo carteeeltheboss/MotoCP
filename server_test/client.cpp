@@ -1,6 +1,5 @@
-#define SERVER_PORT 12345
-
 #include "client.h"
+#include "serialisation.h"
 
 int main(int argc, char* argv[]) {
     if (SDL_Init(0) < 0 || SDLNet_Init() < 0) {
@@ -9,7 +8,7 @@ int main(int argc, char* argv[]) {
     }
 
     IPaddress ip;
-    if (SDLNet_ResolveHost(&ip, "127.0.0.1", 12345) < 0) {
+    if (SDLNet_ResolveHost(&ip, "127.0.0.1", SERVER_PORT) < 0) {
         std::cerr << "Failed to resolve host: " << SDLNet_GetError() << std::endl;
         return 1;
     }
@@ -24,17 +23,25 @@ int main(int argc, char* argv[]) {
 
     char buffer[512];
     while (true) {
-        // Send a message to the server
-        std::cout << "Enter message: ";
-        std::string message;
-        std::getline(std::cin, message);
-        SDLNet_TCP_Send(client, message.c_str(), message.size());
-
-        // Receive messages from the server
-        int received = SDLNet_TCP_Recv(client, buffer, sizeof(buffer) - 1);
+        kObjct obj;
+        int _p;
+        std::cout << "Enter ID for the object: ";
+        std::cin >> _p;
+        obj.kSet(_p);
+        serialize(obj, buffer, sizeof(buffer));
+        SDLNet_TCP_Send(client, buffer, sizeof(kObjct));
+        std::cout << "Object sent to server.";
+        int received = SDLNet_TCP_Recv(client, buffer, sizeof(buffer));
         if (received > 0) {
-            buffer[received] = '\0'; // Null-terminate the message
-            std::cout << "Message from server: " << buffer << std::endl;
+            kObjct received_obj = deserialize(buffer);
+            std::cout << "Received object from server:\n";
+            received_obj.affiche();
+        } else if (received == 0) {
+            std::cerr << "Server closed connection.";
+            break;
+        } else {
+            std::cerr << "Error receiving data from server: " << SDLNet_GetError() << std::endl;
+            break;
         }
     }
 
@@ -43,4 +50,3 @@ int main(int argc, char* argv[]) {
     SDL_Quit();
     return 0;
 }
-

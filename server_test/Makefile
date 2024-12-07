@@ -2,8 +2,9 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -lSDL2 -lSDL2_net -Wunused-parameter
 SERVER = server
 CLIENT = client
-SERVER_SRC = server.cpp game_items.cpp
-CLIENT_SRC = client.cpp game_items.cpp
+COMMON_DATA = serialisation.cpp game_items.cpp
+SERVER_SRC = server.cpp $(COMMON_DATA)
+CLIENT_SRC = client.cpp $(COMMON_DATA)
 all: $(SERVER) $(CLIENT)
 $(SERVER): $(SERVER_SRC)
 	$(CXX) $(CXXFLAGS) -o $(SERVER) $(SERVER_SRC)
