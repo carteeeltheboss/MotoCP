@@ -4,19 +4,26 @@
 #include <iostream>
 #include <string>
 
+
+#define SERVER_PORT 12345
+
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
+
+const int SQUARE_SIZE = 50;
+
 using namespace std;
 
-class Moto {
-private:
-    string name;
-    float velocity;
-    float x, y;
-public:
-    Moto(string a = "", float v = 0, float pos_x = 0, float pos_y = 0) : 
-        name(a), velocity(v), x(pos_x), y(pos_y) {}
 
-    void affiche();
-    string get_name();
+class objkt1{
+	private:
+		int posX;
+		int posY;
+	public:
+		int get(int x1ory);
+		void add(int u, int x1ory);
+        objkt1(int x = SCREEN_WIDTH / 2 - SQUARE_SIZE / 2, int y = SCREEN_HEIGHT / 2 - SQUARE_SIZE / 2) : posX(x), posY(y) {}
 };
+
 
 #endif

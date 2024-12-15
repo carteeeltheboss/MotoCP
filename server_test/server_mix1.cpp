@@ -17,6 +17,9 @@ void broadcast_message(const char* data, int size, int sender_id) {
  
 void handle_client(Client client) {
     char buffer[512];
+    objkt1 oldData; // Variable to store the old deserialized data
+    bool firstIteration = true; // Flag to handle the first iteration
+
     while (true) {
         int received = SDLNet_TCP_Recv(client.socket, buffer, sizeof(buffer));
         if (received <= 0) {
@@ -33,7 +36,15 @@ void handle_client(Client client) {
             break;
         }
 
-         
+        objkt1 newData = deserialize(buffer);
+
+        // Compare oldData and newData
+        if (firstIteration || oldData.get(1) != newData.get(1) || oldData.get(2) != newData.get(2)) {
+            std::cout << "recv data newData x=" << newData.get(1) << " y=" << newData.get(2) << std::endl;
+            oldData = newData; // Update oldData with newData
+            firstIteration = false; // Set the flag to false after the first iteration
+        }
+
         broadcast_message(buffer, received, client.id);
     }
 }

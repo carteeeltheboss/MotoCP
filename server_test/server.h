@@ -5,6 +5,8 @@
 #include <SDL2/SDL_net.h>
 
 #include "game_items.h"
+//#include "client.h"
+#include "serialisation.h"
 
 #include <iostream>
 #include <vector>
@@ -13,7 +15,7 @@
 #include <mutex>
 #include <thread>
 #include <atomic>
-#include <csignal>
+#include <csignal>      
 #include <algorithm>
 
 

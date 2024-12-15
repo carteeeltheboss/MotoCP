@@ -1,28 +1,11 @@
 #include "client.h"
-#include "serialisation.h"
-#include <iostream>
-#include <thread>
-#include <vector>
-#include <atomic>
-#include <mutex>
-#include <queue>
-#include <cstring>
 
  
+#define SERVER_PORT 12345
 std::atomic<bool> running(true);
 std::mutex log_queue_mutex;
 std::queue<std::string> log_queue;
-
-
- 
-int objkt1::get(int x1ory) {
-    return x1ory == 1 ? posX : posY;
-}
-
-void objkt1::add(int u, int x1ory) {
-    if (x1ory == 1) posX += u;
-    else posY += u;
-}
+TCPsocket client;
 
  
 void log_thread() {
@@ -59,7 +42,7 @@ void server_thread() {
         return;
     }
 
-    TCPsocket client = SDLNet_TCP_Open(&ip);
+    client = SDLNet_TCP_Open(&ip);
     if (!client) {
         add_log("Failed to connect to server: " + std::string(SDLNet_GetError()));
         running = false;
@@ -133,7 +116,7 @@ int gameosss() {
         SDL_Quit();
         return -1;
     }
-
+    char _buffer[512];
     SDL_Event event;
     objkt1 karim;
     std::vector<objkt1> objectos;
@@ -153,7 +136,11 @@ int gameosss() {
                 objectos[0] = karim;
             }
         }
-
+        serialize(karim, _buffer, sizeof(karim)+1);
+        int sent_rsl = SDLNet_TCP_Send(client, _buffer, sizeof(karim)+1); //you are wrong little one
+        if (sent_rsl < 0) {
+            add_log("Failed to send data to server: " + std::string(SDLNet_GetError()));
+        }
         renderingDetail(renderer, objectos);
 
         SDL_Delay(16);
