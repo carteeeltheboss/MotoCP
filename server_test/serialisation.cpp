@@ -16,3 +16,7 @@ objkt1 deserialize(const char* buffer) {
     memcpy(&obj, buffer, sizeof(objkt1));
     return obj;
 }
+
+// still needs aes encryption
+// serves at a small ssl to secure and encrypt communications
+// between clients and server

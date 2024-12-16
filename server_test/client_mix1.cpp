@@ -1,7 +1,5 @@
 #include "client.h"
 
- 
-#define SERVER_PORT 12345
 std::atomic<bool> running(true);
 std::mutex log_queue_mutex;
 std::queue<std::string> log_queue;
@@ -52,10 +50,20 @@ void server_thread() {
     add_log("Connected to server.");
 
     char buffer[512];
+    std::string previousData;  
+    bool firstIteration = true;  
+
     while (running) {
         int received = SDLNet_TCP_Recv(client, buffer, sizeof(buffer));
         if (received > 0) {
-            add_log("Received from server: " + std::string(buffer, received));
+            std::string newData(buffer, received);
+
+
+            if (firstIteration || newData != previousData) {
+                add_log("Received from server: " + newData);
+                previousData = newData;  
+                firstIteration = false;  
+            }
         } else if (received == 0) {
             add_log("Server closed connection.");
             running = false;
@@ -88,7 +96,7 @@ void renderingDetail(SDL_Renderer* renderer, std::vector<objkt1> objectos) {
     SDL_RenderPresent(renderer);
 }
 
-int gameosss() {
+int gameEngine() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         add_log("Failed to initialize SDL: " + std::string(SDL_GetError()));
         return -1;
@@ -116,6 +124,7 @@ int gameosss() {
         SDL_Quit();
         return -1;
     }
+    
     char _buffer[512];
     SDL_Event event;
     objkt1 karim;
@@ -157,7 +166,7 @@ int main() {
     std::thread server(server_thread);
     std::thread logger(log_thread);
 
-    if (gameosss() < 0) {
+    if (gameEngine() < 0) {
         add_log("Game encountered an error.");
     }
 

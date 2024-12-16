@@ -25,7 +25,7 @@ void server_thread();
 void log_thread();
 void add_log(const std::string& message);
 void renderingDetail(SDL_Renderer* renderer, std::vector<objkt1> objectos);
-int gameosss();
+int gameEngine();
 
 void networking_thread(TCPsocket socket);
 void send_to_server(TCPsocket socket, const char* data, int size);

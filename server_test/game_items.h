@@ -19,6 +19,7 @@ class objkt1{
 	private:
 		int posX;
 		int posY;
+		//int client_id_unique;
 	public:
 		int get(int x1ory);
 		void add(int u, int x1ory);
