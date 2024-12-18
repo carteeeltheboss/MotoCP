@@ -38,7 +38,9 @@ void handle_client(Client client) {
 
         objkt1 newData = deserialize(buffer);
 
-        if (firstIteration || oldData.get(1) != newData.get(1) || oldData.get(2) != newData.get(2)) {
+        if (firstIteration 
+        || oldData.get(1) != newData.get(1) 
+        || oldData.get(2) != newData.get(2)) {
             std::cout << "Client " << client.id 
                       << " moved. New data x=" << newData.get(1) 
                       << " y=" << newData.get(2) << std::endl;

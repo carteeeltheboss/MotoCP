@@ -163,6 +163,14 @@ int gameEngine() {
 }
 
 int main() {
+
+    objkt1 karim1;
+    std::vector<objkt1> objecteos;
+    objecteos.push_back(karim1);
+
+    cout << "sizeof(karim1) = "<<sizeof(karim1) << endl;
+    cout << "sizeof(std::vector<objkt1> objecteos) = "<<sizeof(objecteos) << endl;
+    
     std::thread server(server_thread);
     std::thread logger(log_thread);
 
