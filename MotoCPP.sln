@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotoCPP", "MotoCPP.vcxproj", "{23254AFE-3956-4CAC-A4E2-3451444F9182}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		clientDebugBuilder|x64 = clientDebugBuilder|x64
+		clientDebugBuilder|x86 = clientDebugBuilder|x86
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		serverDebugBuilder|x64 = serverDebugBuilder|x64
+		serverDebugBuilder|x86 = serverDebugBuilder|x86
+		serverReleaseBuilder|x64 = serverReleaseBuilder|x64
+		serverReleaseBuilder|x86 = serverReleaseBuilder|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.clientDebugBuilder|x64.ActiveCfg = clientDebugBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.clientDebugBuilder|x64.Build.0 = clientDebugBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.clientDebugBuilder|x86.ActiveCfg = clientDebugBuilder|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.clientDebugBuilder|x86.Build.0 = clientDebugBuilder|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Debug|x64.ActiveCfg = Debug|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Debug|x64.Build.0 = Debug|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Debug|x86.ActiveCfg = Debug|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Debug|x86.Build.0 = Debug|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Release|x64.ActiveCfg = Release|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Release|x64.Build.0 = Release|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Release|x86.ActiveCfg = Release|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.Release|x86.Build.0 = Release|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverDebugBuilder|x64.ActiveCfg = serverDebugBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverDebugBuilder|x64.Build.0 = serverDebugBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverDebugBuilder|x86.ActiveCfg = serverDebugBuilder|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverDebugBuilder|x86.Build.0 = serverDebugBuilder|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverReleaseBuilder|x64.ActiveCfg = serverReleaseBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverReleaseBuilder|x64.Build.0 = serverReleaseBuilder|x64
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverReleaseBuilder|x86.ActiveCfg = serverReleaseBuilder|Win32
+		{23254AFE-3956-4CAC-A4E2-3451444F9182}.serverReleaseBuilder|x86.Build.0 = serverReleaseBuilder|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
