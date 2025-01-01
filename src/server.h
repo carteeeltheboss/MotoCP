@@ -17,17 +17,15 @@
 #include <atomic>
 #include <csignal>      
 #include <algorithm>
+#include <random>
 
 
 #define SERVER_PORT 12345
 
 using namespace std;
 
-struct Client {
-    TCPsocket socket;
-    int id;
-};
 
+void broadcast_states();
 void broadcast_message(const char* data, int size, int sender_id);
 void listener_thread(TCPsocket server);
 void signal_handler(int signal);

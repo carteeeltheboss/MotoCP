@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\client_mix1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game_items.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\serialisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\server_mix1.cpp">
+    <ClCompile Include="src\client_mix3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server_mix3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
